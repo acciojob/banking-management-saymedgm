@@ -1,24 +1,29 @@
 package com.driver;
 
 public class BankAccount {
-	private String accountNumber;
+    private String accountNumber;
     private String accountHolderName;
     private double balance;
 
     public BankAccount(String accountNumber, String accountHolderName, double initialBalance) {
-       // your code goes here
+        this.accountNumber = accountNumber;
+        this.accountHolderName = accountHolderName;
+        this.balance = initialBalance;
     }
 
     public double getBalance() {
-    	// your code goes here
-        return 0.0;
+        return balance;
     }
 
     public void deposit(double amount) {
-    	// your code goes here
+        balance += amount;
     }
 
     public void withdraw(double amount) throws InsufficientBalanceException {
-    	// your code goes here
+        if (amount <= balance) {
+            balance -= amount;
+        } else {
+            throw new InsufficientBalanceException("Insufficient balance. Cannot withdraw.");
+        }
     }
 }
